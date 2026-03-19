@@ -51,10 +51,9 @@ La finalidad de este proyecto es revisar el avance de cada proyecto por fase e i
 ## 🖼️ Vistas Previas del proyecto
 <details>
   <summary>Capturas</summary>
-    <img width="1911" height="1064" alt="image" src="https://github.com/user-attachments/assets/a5976e58-5afd-4d45-ac86-79416ee37b7d" />
-    <img width="1910" height="1067" alt="image" src="https://github.com/user-attachments/assets/65107f03-de5f-4e78-89cf-f04146ff8ab0" />
-    <img width="1905" height="1060" alt="image" src="https://github.com/user-attachments/assets/7ac6b2d9-ecb9-4628-add3-75c9ee545ac6" />
-
+    <img width="1702" height="808" alt="image" src="https://github.com/user-attachments/assets/eabacd09-8f1b-4dd4-a200-187b21fe0135" />
+    <img width="1612" height="882" alt="image" src="https://github.com/user-attachments/assets/a6c5243e-b246-4340-a703-7bb0769cf6fa" />
+    <img width="2159" height="874" alt="image" src="https://github.com/user-attachments/assets/3c2b3ddf-2796-4844-8dc2-9837eed6e9fd" />
 </details>
 
 <details>
