@@ -84,6 +84,7 @@ La finalidad de este proyecto es revisar el avance de cada proyecto por fase e i
     ```dax
     VAR _progress = SWITCH(TRUE(),([#Actual Cost]>0) && ([#Real Progress(%)]>0),(([#Real Progress(%)]*[#Planned Cost])/[#Actual Cost]),0)
     VAR result = SWITCH(TRUE(),_progress=0,"Unexpended budget",_progress>=1.05,"Excellent",_progress>1,"Good",_progress>0.9,"Warning",_progress>0,"Critical")
+    RETURN result
     ```
   - **PM:**
     ```dax
@@ -93,9 +94,78 @@ La finalidad de este proyecto es revisar el avance de cada proyecto por fase e i
     ```dax
     SWITCH(TRUE(),[_Alert Cost]="Critical Cost Overrun" || [_Alert Cost]="Moderate cost overrun",1, [_Alert Cost]="On Budget",0.7,[_Alert Cost] = "Cost Efficiency",0.5,0)
     ```
-
-
-RETURN result
+  - **KPI CPI:**
+    ```dax
+    SWITCH(TRUE(),[_CPI]="Unexpended Budget",1,[_CPI]="Excellent",0.9,[_CPI]="Good",0.75,[_CPI]="Warning",0.5,[_CPI]="Critical",0.1)
+    ```
+  - **KPI Progress:**
+    ```dax
+    SWITCH(TRUE(),[_Alert Progress]="Complete",1,[_Alert Progress]="Behind Schedule",0.9,[_Alert Progress]="On Schedule",0.5,[_Alert Progress]="Critical",0.1)
+    ```
+  - **#Total Items:**
+    ```dax
+    DISTINCTCOUNT(FactProgress[ID_Item])
+    ```
+  - **#Temporary Works Progress:**
+    ```dax
+    CALCULATE([#Real Progress(%)],DimItems[Phase]="1. Obras Provisionales")
+    ```
+  - **#Structural Works Progress:**
+    ```dax
+    CALCULATE([#Real Progress(%)],DimItems[Phase]="2. Estructuras")
+    ```
+  - **#MEP Progress:**
+    ```dax
+    CALCULATE([#Real Progress(%)],DimItems[Phase]="3. Instalaciones")
+    ```
+  - **#Finishes Progress:**
+    ```dax
+    CALCULATE([#Real Progress(%)],DimItems[Phase]="4. Acabados")
+    ```
+  - **#Critical Items:**
+    ```dax
+    VAR CriticalItems = COUNTROWS(FILTER(FactProgress,[Alert Progress]="Crítico"))
+    RETURN IF(OR(ISBLANK(CriticalItems),CriticalItems=0),0,CriticalItems)
+    ```
+  - **#CPI:**
+    ```dax
+    IF(AND([#Planned Cost]>0,[#Actual Cost]>0),DIVIDE(([#Planned Cost]*[#Real Progress(%)]),[#Actual Cost],0),BLANK())
+    ```
+  - **#CV:**
+    ```dax
+    VAR cv = DIVIDE([#Actual Cost],[#Planned Cost],0)-1
+    RETURN IF(cv=-1,0,cv)
+    ```
+  - **#Planned_DateMin:**
+    ```dax
+    VAR _date = MIN(FactProgress[Planned_StartDate])
+    RETURN IF(HASONEVALUE(DimProject[Name_Project]),_date,"Select a project")
+    ```
+  - **#Planned_DateMax:**
+    ```dax
+    VAR _date= MAX(FactProgress[Planned_EndDate])
+    RETURN IF(HASONEVALUE(DimProject[Name_Project]),_date,"Select a project")
+    ```
+  - **#Total Days Overdue:**
+    ```dax
+    VAR days = [#Real Days]-[#Planned Days]
+    VAR validate = IF(days<0,0,days)
+    RETURN IF(HASONEVALUE(DimProject[Name_Project]),validate,"Select a project")
+    ```
+  - **#Actual_DateMin:**
+    ```dax
+    VAR _date= MIN(FactProgress[Real_StartDate])
+    RETURN IF(HASONEVALUE(DimProject[Name_Project]),_date,"Select a project")
+    ```
+  - **#Actual_DateMax:**
+    ```dax
+    VAR _date= MAX(FactProgress[Real_EndDate])
+    RETURN IF(HASONEVALUE(DimProject[Name_Project]),_date,"Select a project")
+    ```
+  - **_Owner:**
+    ```dax
+    =IF(HASONEVALUE(DimProject[Name_Project]),MAXX(FactProgress,RELATED(DimOwner[Owner_Name])),"Owner")
+    ```
   </details>
 - Diseño Interactivo: Uso de paginado, controles de formulario y segmentación de datos.
 
