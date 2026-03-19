@@ -179,7 +179,7 @@ La finalidad de este proyecto es revisar el avance de cada proyecto por fase e i
 
 <details>
   <summary>Video</summary>
-  https://www.youtube.com/watch?v=ISpue331_Y8
+  https://youtu.be/UGYFBVz-8AA?si=TrvGqWUrrEhUjzlv
 </details>
 
 
