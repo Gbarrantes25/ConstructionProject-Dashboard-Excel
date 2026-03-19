@@ -41,11 +41,62 @@ La finalidad de este proyecto es revisar el avance de cada proyecto por fase e i
 - Transformaciones en Power Query: Se realizaron procesos de limpieza y modelado de datos para optimizar el rendimiento.
 - Creación de tabla calendario.
 - Medidas DAX:
-  - <details><summary>Abrir</summary>
-    <code>
-      
-    </code>
-    </details> 
+  <details>
+  <summary>Click para expandir medidas</summary>
+
+    
+  - **#Total Projects:** `DISTINCTCOUNT(FactProgress[ID_Project])`
+  - **#Budget:** `SUM(DimProject[Budget])`
+  - **#Actual Cost:** `SUM(FactProgress[Real_Cost])`
+  - **#Planned Cost:** `SUM(FactProgress[Expected_Cost])`
+  - **#At-Risk Projects:**
+    ```dax
+    VAR _count = COUNTROWS(FILTER(DimProject,[_Alert Progress]="Critical" || [_Alert Progress]="Behind Schedule")) 
+    RETURN IF(OR(ISBLANK(_count),_count=0),0,_count)
+    ```
+  - **#Cost Progress(%):** `DIVIDE([#Actual Cost],[#Planned Cost],0)`
+  - **#Planned Progress(%):** `MIN(1,DIVIDE([#PlanToday],[#Planned Days],0))`
+  - **#PlanToday:** `SUM(FactProgress[Plan Today])`
+  - **#Planned Days:** `DATEDIFF(MIN([Planned_StartDate]),MAX([Planned_EndDate]),DAY)+1`
+  - **#Real Progress(%):** 
+    ```dax
+    VAR _progress = DIVIDE([#Real Today],[#Real Days],0) 
+    VAR result = IF(_progress>1,1,_progress) 
+    RETURN result
+    ```
+  - **#Real Today:** `SUMX(FactProgress,[Real Today])`
+  - **#Real Days:** `SUM([Real Days])`
+  - **#BudgetvsActual:** `DIVIDE([#Actual Cost],[#Budget],0)`
+  - **Alert Progress:**
+    ```dax
+    VAR dateendplanned = MAX(FactProgress[Planned_EndDate])
+    VAR dateendreal = COUNTBLANK(FactProgress[Real_EndDate])
+    VAR realprogress = [#Real Progress(%)]
+    VAR plannedprogress = [#Planned Progress(%)]
+    VAR result = SWITCH(TRUE(),realprogress=1,"Complete",AND(dateendreal>0,dateendplanned<TODAY()),"Critical",realprogress<plannedprogress-0.1,"Behind schedule","On schedule")
+    RETURN result
+    ```
+  - **Alert Cost:**
+    ```dax
+    SWITCH(TRUE(),[#Cost Progress(%)]>1.1,"Critical Cost Overrun",[#Cost Progress(%)]>1,"Moderate cost overrun", [#Cost Progress(%)]>0.94,"On budget",[#Cost Progress(%)]>0,"Cost Efficiency","Unexpended budget")
+    ```
+  - **_CPI:**
+    ```dax
+    VAR _progress = SWITCH(TRUE(),([#Actual Cost]>0) && ([#Real Progress(%)]>0),(([#Real Progress(%)]*[#Planned Cost])/[#Actual Cost]),0)
+    VAR result = SWITCH(TRUE(),_progress=0,"Unexpended budget",_progress>=1.05,"Excellent",_progress>1,"Good",_progress>0.9,"Warning",_progress>0,"Critical")
+    ```
+  - **PM:**
+    ```dax
+    IF(HASONEVALUE(DimProject[Name_Project]),MAXX(FactProgress,RELATED(DimProjectManagement[PM_Name])),"PM")
+    ```
+  - **KPI Alert Cost:**
+    ```dax
+    SWITCH(TRUE(),[_Alert Cost]="Critical Cost Overrun" || [_Alert Cost]="Moderate cost overrun",1, [_Alert Cost]="On Budget",0.7,[_Alert Cost] = "Cost Efficiency",0.5,0)
+    ```
+
+
+RETURN result
+  </details>
 - Diseño Interactivo: Uso de paginado, controles de formulario y segmentación de datos.
 
 ## 🖼️ Vistas Previas del proyecto
