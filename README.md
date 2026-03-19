@@ -1,46 +1,40 @@
-# CFO-Dashboard-PowerBI
+# Construction Project Dashboard
 
 ## 📃 Descripción General
-Este proyecto fue elaborado para una empresa del rubro fastfood con una oficina central y 5 tiendas en Perú. Los datos empleados son ficticios.
-La finalidad de este proyecto es revisar la salud financiera de la empresa.
+Este proyecto fue elaborado para una empresa del rubro de construcción con 10 proyectos inmobiliarios. Los datos empleados son ficticios.
+La finalidad de este proyecto es revisar el avance de cada proyecto por fase e items.
 
 
 ## 📊 Contenido del proyecto
-- Página "Overview": Contiene una vista general del análisis.
-- Página "P&C Deep Dive": Contiene el análisis por sucursal de la cadena.
-- Página "P&L": Contiene el esdtado de resultados de la empresa.
+- Hoja "DimProject": Contiene la tabla dimensional de Proyectos.
+- Hoja "DimItems": Contiene la tabla dimensional de items.
+- Hoja "FactProgress": Contiene la tabla de hechos de Progreso de proyectos.
+- Hoja "DimPM": Contiene la tabla dimensional de Project Management.
+- Hoja "DimOwner": Contiene la tabla dimensional de los responsables por items.
+- Hoja "Overview": Contiene la primera hoja del Dashboard.
+- Hoja "Phase & Line": Contiene la segunda hoja del Dashboard.
+- Hoja "Gantt View": Contiene la última hoja del Dashboard.
 
 
 ## 🛠️ Herramientas y Tecnologías Utilizadas
-- Visualización: Power BI Desktop.
-- Fuente de Datos:
-  - [DimCenterCost.csv](https://docs.google.com/spreadsheets/d/e/2PACX-1vQ6PFClLjBQaGVinUTTAXvkXU9rfNwU-3kiuux2qMyL-WZl7p7AjV3gJRHp8UhZhuz_MLB8PLyaL8z1/pubhtml?gid=1517220622&single=true)
-  - [DimDocument.csv](https://docs.google.com/spreadsheets/d/e/2PACX-1vTQruzVx53OPt6nqljWb9V0UhzNSA-1QDAqtTc7W8rvEqivT19gLfvHCmXC9q5nKpwBjT9Qh_1o7595/pubhtml?gid=775268392&single=true)
-  - [DimEntity.csv](https://docs.google.com/spreadsheets/d/e/2PACX-1vQdYxEJXUrJNWj8e_BcxMak93N0ovnqHPsCZdokK_iZm4UyWCMBerzpfZDUcbVO4ma1ZKAYeFwKGh-V/pubhtml?gid=1860496830&single=true)
-  - [DimProduct.csv](https://docs.google.com/spreadsheets/d/e/2PACX-1vSTxIpD47q6jTtZ_hJNbzMUgSWeUIa_PyrKuRk5f5HUcqzEKc27Lz0iDX_Jb09mLrxgNussrsBu7dT5/pubhtml?gid=248530384&single=true)
-  - [DimSubcategory.csv](https://docs.google.com/spreadsheets/d/e/2PACX-1vR-7RPQosGMlYZkvK3IKwo5y0rfu0R30MR5KTvHY-vq-UF476O0ussKhzuJ5_hfCZowZ9Zo9WmoyX_C/pubhtml?gid=571723735&single=true)
-  - [DimBranch.csv](https://docs.google.com/spreadsheets/d/e/2PACX-1vRrnh7vDS9fWZCEFM33f8N4ONGDAaNxtVZlCXSu1Xkk4VzeMw6crpXo3oNwvHwDch6I3bS6qCbjt-tq/pubhtml?gid=1431746542&single=true)
-  - [Fact-Expenses.csv](https://docs.google.com/spreadsheets/d/e/2PACX-1vReNKN_bEEzeArYYgZhg6byO1LisSmkZIlHusdULdL_1yk5RSIeJKxbUInfsExxUYYQ9YbpSXchhv7X/pubhtml?gid=354373430&single=true)
-  - [Fact-Revenue.csv](https://docs.google.com/spreadsheets/d/e/2PACX-1vRebdrai3eny64GPrLjRAXhuSBqzXV18BFVRNUi4ULliH3oE4Py7HgJ5Ri4DK8QM9S6jmMKjRUqZrcG/pubhtml?gid=147943285&single=true)
+- Visualización: Microsoft Excel.
+- Fuente de Datos: Está incluido dentro del archivo .xlsx
 
     
 - Lenguajes: DAX para las medidas calculadas y Power Query (Lenguaje M) para la transformación de datos.
 
 
 ## ⚙️ Configuración del Entorno
-- Software Necesario: Power BI Desktop.
+- Software Necesario: Microsoft Excel.
 - Instalación:
-  - Descargar [Chief Financial Officer.pbix](https://github.com/Gbarrantes25/CFO-Dashboard-PowerBI/blob/main/Chief%20Financial%20Officer.pbix) con Power BI Desktop.
+  - Descargar [Construction Project Dashboard.xlsx](https://github.com/Gbarrantes25/ConstructionProject-Dashboard-Excel/blob/main/Construction%20Project%20Dashboard.xlsx) con Microsoft Excel.
   - Entrar a Inicio y darle click a "Actualizar".
 
 
 ## 📂 Estructura del Repositorio
 <code>.
-  ├── Data Source                        # Contiene las tablas en formato .xlsx
-  |── Images                             # Carpeta donde se alojan los íconos.
-  ├── Chief Financial Officer.pbix       # Archivo que será ejecutado con Power BI Desktop.
-  |── UDF.txt                            # Contiene las funciones definidas por el usuario.                
-  └── README.md                          # Este archivo.
+  ├── Construction Project Dashboard.xlsx  # Contiene el archivo del proyecto en formato .xlsx            
+  └── README.md                            # Este archivo.
 </code>
 
 
