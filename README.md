@@ -1,7 +1,12 @@
 # Construction Project Dashboard
 
 ## 📃 Descripción General
-Dashboard integral diseñado en Microsoft Excel para el control y seguimiento de proyectos de construcción. Esta herramienta centraliza indicadores críticos de rendimiento (KPIs), permitiendo a los gerentes de obra y stakeholders visualizar el progreso real frente al planificado, optimizar el uso de recursos y anticipar desviaciones en el presupuesto y cronograma mediante visualizaciones interactivas. Los datos empleados son ficticios.
+Dashboard profesional para el **seguimiento y control de proyectos de construcción**, desarrollado en **Microsoft Excel** con **Power Query** y **DAX**. 
+Permite a gerentes de obra y stakeholders:
+- 📊 Visualizar el progreso real vs. planificado en tiempo real.
+- 💰 Monitorear desviaciones de presupuesto y cronograma.
+- 🚨 Identificar proyectos en riesgo mediante alertas automáticas.
+- 📈 Analizar KPIs clave como CPI, avance por fase y costos.
 
 
 ## 📊 Contenido del proyecto
