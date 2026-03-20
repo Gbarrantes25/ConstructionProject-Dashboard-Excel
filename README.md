@@ -1,8 +1,7 @@
 # Construction Project Dashboard
 
 ## 📃 Descripción General
-Este proyecto fue elaborado para una empresa del rubro de construcción con 10 proyectos inmobiliarios. Los datos empleados son ficticios.
-La finalidad de este proyecto es revisar el avance de cada proyecto por fase e items.
+Dashboard integral diseñado en Microsoft Excel para el control y seguimiento de proyectos de construcción. Esta herramienta centraliza indicadores críticos de rendimiento (KPIs), permitiendo a los gerentes de obra y stakeholders visualizar el progreso real frente al planificado, optimizar el uso de recursos y anticipar desviaciones en el presupuesto y cronograma mediante visualizaciones interactivas. Los datos empleados son ficticios.
 
 
 ## 📊 Contenido del proyecto
